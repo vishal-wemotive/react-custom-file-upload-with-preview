@@ -7,11 +7,11 @@ import Preview from './Components/Preview/Preview';
 import Thumbnails from './Components/Thumbnails/Thumbnails';
 
 const mediaUrls= [
-  {id: 1, type: 'jpg', url: 'https://image.shutterstock.com/image-photo/mountains-under-mist-morning-amazing-260nw-1725825019.jpg', thumbnail: ''},
-  {id: 2, type: 'png', url: 'https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png', thumbnail:''},
+  {id: 1, type: 'jpg', url: 'https://source.unsplash.com/5tlbXq1p-Qo/1280x853', thumbnail: ''},
+  {id: 2, type: 'png', url: 'https://source.unsplash.com/RoJq6AuMXP8/1280x853', thumbnail:''},
   {id: 3, type: 'mp4', url: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4', thumbnail: ''},
   {id: 4, type: 'pdf', url: 'https://surgeon-dev.s3-accelerate.amazonaws.com/product/c2aeddaa-3354-483b-b2d4-607c8818d89d.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXFYZJE6FEBMN3NLX%2F20210507%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210507T113924Z&X-Amz-Expires=3600&X-Amz-Signature=0eb7fa05bce2d3e14ed760a18c4f6171fa13dfb2a6bada7c44439b6f83b0109e&X-Amz-SignedHeaders=host', thumbnail: ''},
-  {id: 5, type: 'jpeg', url: 'https://surgeon-dev.s3-accelerate.amazonaws.com/product/4c883071-168c-4d90-ac28-552a98c65046.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAXFYZJE6FEBMN3NLX%2F20210507%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20210507T101233Z&X-Amz-Expires=3600&X-Amz-Signature=e24c9c08f9073b8872e21e4038a06bc30287eca9bc9fad5a7db0dbb9167bd33d&X-Amz-SignedHeaders=host', thumbnail: ''}
+  {id: 5, type: 'jpeg', url: 'https://source.unsplash.com/RoJq6AuMXP8/1280x853', thumbnail: ''}
 ];
 
 // const mediaUrls= [

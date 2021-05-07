@@ -34,7 +34,13 @@
 .grid-download-icon-label{
     height: 100%;
     display: table;
-    width: 100%; height: 100%
+    width: 100%; height: 100%;
+    color: #727f88 !important;
+}
+
+.download-container a{
+    color: #727f88 !important;
+    text-decoration: none !important;
 }
 
 .download-container{

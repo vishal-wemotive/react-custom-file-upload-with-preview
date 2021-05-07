@@ -3,8 +3,8 @@ import './Preview.css';
 
 import {Typography} from '@material-ui/core';
 
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeftRounded';
+import ChevronRightIcon from '@material-ui/icons/ChevronRightRounded';
 import GetAppRoundedIcon from '@material-ui/icons/GetAppRounded';
 
 const Preview = React.memo(({
