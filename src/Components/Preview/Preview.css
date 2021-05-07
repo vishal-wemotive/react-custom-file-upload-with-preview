@@ -1,0 +1,45 @@
+.gallery-media{
+    width: 100%;
+    height:99% !important;
+    border-radius: 4px;
+}
+.left-click-button{
+    position: absolute;
+    left: 0 !important;
+    top:40%;
+    font-size: 100px !important;
+    opacity: 0.2;
+    cursor: pointer;
+}
+.right-click-button{
+    position: absolute;
+    right: 0 !important;
+    top: 40%;
+    font-size: 100px !important;
+    opacity: 0.2;
+    cursor: pointer;
+}
+.left-click-button:hover{
+    opacity: 1;
+}
+.right-click-button:hover{
+    opacity: 1;
+}
+
+
+
+.download-icon{
+    font-size: 80px !important;
+}
+.grid-download-icon-label{
+    height: 100%;
+    display: table;
+    width: 100%; height: 100%
+}
+
+.download-container{
+    display: table-cell; 
+    vertical-align: middle;
+    text-align:center;
+    cursor: pointer;
+}
