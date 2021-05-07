@@ -5,6 +5,7 @@ import {Pagination, PaginationItem} from '@material-ui/lab';
 import PlayArrowRoundedIcon from '@material-ui/icons/PlayArrowRounded';
 import VideoLibraryRoundedIcon from '@material-ui/icons/VideoLibraryRounded';
 import PictureAsPdfRoundedIcon from '@material-ui/icons/PictureAsPdfRounded';
+import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
 
 const Thumbnails = React.memo(({
     mediaUrls, page, handleChange
@@ -15,13 +16,28 @@ const Thumbnails = React.memo(({
             case 'jpg':
             case 'png':
             case 'jpeg':
-                return <img src={fileUrl} alt="image" className={`thumbnail-item ${itemPage === page?"selected-item":""}`} onClick={() => handleChange(itemPage)} />
+                return (
+                    <div className={`thumbnail-item ${itemPage === page?"selected-item":""}`} onClick={() => handleChange(itemPage)}>
+                        <CancelRoundedIcon className="remove-image-icon" />
+                        <img src={fileUrl} alt="image" className="image-thumbnail" />
+                    </div>
+                )
                 break;
             case 'mp4':
-                return <div className={`text-align-center thumbnail-item ${itemPage === page?"selected-item":""}`} onClick={() => handleChange(itemPage)}><VideoLibraryRoundedIcon className="video-thumbnail" /></div>
+                return (
+                    <div className={`text-align-center thumbnail-item ${itemPage === page?"selected-item":""}`} onClick={() => handleChange(itemPage)}>
+                        <CancelRoundedIcon className="remove-image-icon" />
+                        <VideoLibraryRoundedIcon className="video-thumbnail" />
+                    </div>
+                )
                 break;
             case 'pdf':
-                return <div className={`text-align-center thumbnail-item ${itemPage === page?"selected-item":""}`} onClick={() => handleChange(itemPage)}><PictureAsPdfRoundedIcon className="pdf-thumbnail" /></div>
+                return (
+                    <div className={`text-align-center thumbnail-item ${itemPage === page?"selected-item":""}`} onClick={() => handleChange(itemPage)}>
+                        <CancelRoundedIcon className="remove-image-icon" />
+                        <PictureAsPdfRoundedIcon className="pdf-thumbnail" />
+                    </div>
+                )
                 break;
             default:
               // code block
@@ -41,7 +57,6 @@ const Thumbnails = React.memo(({
                         <PaginationItem
                             component={() => {
                                 return thumbnailRenderBasedOnType(media.type, media.url, item.page);
-                                return <img src={media.url} alt="image" className={`thumbnail-item ${item.page === page?"selected-item":""}`} onClick={() => handleChange(item.page)} />
                             }}
                         />
                     )

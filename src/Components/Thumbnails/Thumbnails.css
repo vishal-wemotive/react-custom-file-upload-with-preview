@@ -4,6 +4,7 @@
     margin: 10px;
     border-radius: 4px;
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+    position: relative !important;
 }
   
 .selected-item{
@@ -32,10 +33,21 @@
     color: #727f88 !important;
 }
 
+.image-thumbnail{
+    height: 100px;
+    width: 100px;
+    border-radius: 4px;
+}
+
 .pdf-thumbnail{
     font-size: 50px !important;
     margin-top: 25px;
     color: #727f88 !important;
+}
+
+.selected-item .image-thumbnail{
+    height: 120px;
+    width: 120px;
 }
 
 .selected-item .video-thumbnail,
@@ -48,4 +60,12 @@
 
 .thumbnail-disable{
     opacity: 0.2 !important;
+}
+
+.remove-image-icon{
+    position: absolute;
+    color: #dc3545;
+    top: -10px;
+    right: -10px;
+    cursor: pointer;
 }
