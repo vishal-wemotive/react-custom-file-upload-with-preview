@@ -5,6 +5,7 @@ import { Container, Grid } from '@material-ui/core';
 
 import Preview from './Components/Preview/Preview';
 import Thumbnails from './Components/Thumbnails/Thumbnails';
+import FileUpload from './Components/FileUpload/FileUpload';
 
 const mediaUrls= [
   {id: 1, type: 'jpg', url: 'https://source.unsplash.com/5tlbXq1p-Qo/1280x853', thumbnail: ''},
@@ -36,13 +37,21 @@ function App(props) {
     setPage(value);
   };
 
+  const onUploadFileList = (files) => {
+    console.log("FILES=====>", files);
+  }
+
   return (
     <Container maxWidth={false} className="custom-file-upload-with-preview-container">
       <Grid container spacing={0}>
         <Grid item xs={12} sm={12} md={12} lg={12} xl={12} className="preview-container">
           <Preview totalCount={mediaUrls.length}  media={mediaUrls[page-1]} page={page} handleChange={handleChange}/>
         </Grid>
-        <Grid item xs={3} sm={3} md={3} lg={3} xl={3}></Grid>
+        <Grid item xs={3} sm={3} md={3} lg={3} xl={3} className="file-upload-container">
+          <FileUpload
+            onUploadFileList={onUploadFileList}
+          />
+        </Grid>
         <Grid item xs={9} sm={9} md={9} lg={9} xl={9} className="thumbnails-container">
           <Thumbnails mediaUrls={mediaUrls} page={page} handleChange={handleChange} />
         </Grid>

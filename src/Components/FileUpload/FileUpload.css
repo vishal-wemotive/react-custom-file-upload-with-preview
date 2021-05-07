@@ -1,0 +1,18 @@
+.add-file{
+    height: 100px;
+    width: 100px;
+    /* margin: 10px; */
+    font-size: 16px !important;
+    border-radius: 4px;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
+    /* position: relative !important; */
+}
+
+.content-display-center{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
