@@ -16,17 +16,14 @@ function Alert(props) {
 }
 
 function Main(props) {
-  const [mediaList, setMediaList] = useState(null);
-  const [uploadedFiles, setUploadedFiles] = useState(null);
+  const [mediaList, setMediaList] = useState([]);
+  const [uploadedFiles, setUploadedFiles] = useState([]);
   const [page, setPage] = useState(1);
   const [snackbar, setSnackbar] = useState({
     open: false,
     severity: 'error',
     message: ''
   });
-  useEffect(() => {
-    setMediaList(props.files ? props.files : []);
-  }, []);
   useEffect(() => {
     setMediaList(props.files ? props.files : []);
   }, [props]);
