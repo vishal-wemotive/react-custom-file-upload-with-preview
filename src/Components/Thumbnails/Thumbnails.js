@@ -1,45 +1,68 @@
 import React from 'react';
 import './Thumbnails.css';
+import {Tooltip} from '@material-ui/core';
 import {Pagination, PaginationItem} from '@material-ui/lab';
 
 import PlayArrowRoundedIcon from '@material-ui/icons/PlayArrowRounded';
 import VideoLibraryRoundedIcon from '@material-ui/icons/VideoLibraryRounded';
 import PictureAsPdfRoundedIcon from '@material-ui/icons/PictureAsPdfRounded';
+import FileRoundedIcon from '@material-ui/icons/InsertDriveFileRounded';
 import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
 
+import TextTooltip from '../FileName/FileName';
+
 const Thumbnails = React.memo(({
-    mediaUrls, page, handleChange
+    mediaUrls, page, handleChange, isDelete, onDeleteFile
 }) => {
     
-    const thumbnailRenderBasedOnType = (type, fileUrl, itemPage) => {
-        switch(type) {
+    const thumbnailRenderBasedOnType = (media, itemPage) => {
+        switch(media.type) {
             case 'jpg':
             case 'png':
             case 'jpeg':
                 return (
-                    <div className={`thumbnail-item ${itemPage === page?"selected-item":""}`} onClick={() => handleChange(itemPage)}>
-                        <CancelRoundedIcon className="remove-image-icon" />
-                        <img src={fileUrl} alt="image" className="image-thumbnail" />
+                    <div onClick={() => handleChange(itemPage)}>
+                        <div className={`thumbnail-item ${itemPage === page?"selected-item":""}`}>
+                            {isDelete && <Tooltip title="Delete"><CancelRoundedIcon className="remove-image-icon" onClick={(event) => onDeleteFile(event, media)}/></Tooltip>}
+                            <img src={media.url} alt="image" className="image-thumbnail" />
+                        </div>
+                        <TextTooltip text={media.fileName} />
                     </div>
                 )
                 break;
             case 'mp4':
                 return (
-                    <div className={`text-align-center thumbnail-item ${itemPage === page?"selected-item":""}`} onClick={() => handleChange(itemPage)}>
-                        <CancelRoundedIcon className="remove-image-icon" />
-                        <VideoLibraryRoundedIcon className="video-thumbnail" />
+                    <div onClick={() => handleChange(itemPage)}>
+                        <div className={`text-align-center thumbnail-item ${itemPage === page?"selected-item":""}`}>
+                            {isDelete && <Tooltip title="Delete"><CancelRoundedIcon className="remove-image-icon" onClick={(event) => onDeleteFile(event, media)}/></Tooltip>}
+                            <VideoLibraryRoundedIcon className="video-thumbnail" />
+                        </div>
+                        <TextTooltip text={media.fileName} />
                     </div>
                 )
                 break;
             case 'pdf':
                 return (
-                    <div className={`text-align-center thumbnail-item ${itemPage === page?"selected-item":""}`} onClick={() => handleChange(itemPage)}>
-                        <CancelRoundedIcon className="remove-image-icon" />
-                        <PictureAsPdfRoundedIcon className="pdf-thumbnail" />
+                    <div onClick={() => handleChange(itemPage)}>
+                        <div className={`text-align-center thumbnail-item ${itemPage === page?"selected-item":""}`}>
+                            {isDelete && <Tooltip title="Delete"><CancelRoundedIcon className="remove-image-icon" onClick={(event) => onDeleteFile(event, media)}/></Tooltip>}
+                            <PictureAsPdfRoundedIcon className="pdf-thumbnail" />
+                        </div>
+                        <TextTooltip text={media.fileName} />
                     </div>
                 )
                 break;
             default:
+                return (
+                    <div onClick={() => handleChange(itemPage)}>
+                        <div className={`text-align-center thumbnail-item ${itemPage === page?"selected-item":""}`}>
+                            {isDelete && <Tooltip title="Delete"><CancelRoundedIcon className="remove-image-icon" onClick={(event) => onDeleteFile(event, media)}/></Tooltip>}
+                            <FileRoundedIcon className="pdf-thumbnail" />
+                        </div>
+                        <TextTooltip text={media.fileName} />
+                    </div>
+                )
+                break;
               // code block
         }
     }
@@ -56,7 +79,7 @@ const Thumbnails = React.memo(({
                     return (
                         <PaginationItem
                             component={() => {
-                                return thumbnailRenderBasedOnType(media.type, media.url, item.page);
+                                return thumbnailRenderBasedOnType(media, item.page);
                             }}
                         />
                     )

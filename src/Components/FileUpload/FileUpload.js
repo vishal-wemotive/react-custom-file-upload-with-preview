@@ -27,31 +27,45 @@ const styles = theme => ({
 });
 
 const FileUpload = React.memo(({
-    classes, onUploadFileList
+    classes, onUploadFileList, filesLimit, uploadText
 }) => {
 
+  const uploadLabelRender = () => {
     return (
-        <DropzoneArea
-          Icon={AttachFile}
-        //   acceptedFiles={[process.env.REACT_APP_BUILD_FILE_SUPPORTED]}
-          showPreviewsInDropzone={false}
-          showFileNamesInPreview={false}
-          useChipsForPreview={false}
-          dropzoneText={<div className="add-file"><div className="content-display-center"><AttachFile /> <br /> Add File</div></div>}
-          showAlerts={['error']}
-        //   maxFileSize={ALLOWED_ATTACHMENT_SIZE_IN_MB}
-        //   filesLimit={CONCURRENT_FILE_UPLOAD_LIMIT}
-        //   initialFiles={files}
-          onChange={selectedFiles => onUploadFileList(selectedFiles)}
-          onDelete={() => onUploadFileList([])}
-          classes={{
-            root: classes.smallDropzone,
-            icon: classes.hideIcon,
-            text: classes.text,
-            textContainer: classes.textContainer
-          }}
-        />
+      <div className="add-file">
+        <div className="content-display-center">
+          {
+            uploadText
+            ?uploadText
+            :<><AttachFile /> <br /> Add File</>
+          }
+        </div>
+      </div>
     )
+  }
+
+  return (
+      <DropzoneArea
+        Icon={AttachFile}
+      //   acceptedFiles={[process.env.REACT_APP_BUILD_FILE_SUPPORTED]}
+        showPreviewsInDropzone={false}
+        showFileNamesInPreview={false}
+        useChipsForPreview={false}
+        dropzoneText={uploadLabelRender()}
+        showAlerts={['error']}
+      //   maxFileSize={ALLOWED_ATTACHMENT_SIZE_IN_MB}
+        filesLimit={filesLimit?filesLimit:3}
+      //   initialFiles={files}
+        onChange={selectedFiles => onUploadFileList(selectedFiles)}
+        onDelete={() => onUploadFileList([])}
+        classes={{
+          root: classes.smallDropzone,
+          icon: classes.hideIcon,
+          text: classes.text,
+          textContainer: classes.textContainer
+        }}
+      />
+  )
 
 });
 

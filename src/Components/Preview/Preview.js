@@ -1,11 +1,13 @@
 import React from 'react';
 import './Preview.css';
 
-import {Typography} from '@material-ui/core';
+import {Typography, Tooltip} from '@material-ui/core';
 
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeftRounded';
 import ChevronRightIcon from '@material-ui/icons/ChevronRightRounded';
 import GetAppRoundedIcon from '@material-ui/icons/GetAppRounded';
+
+import DownloadIcon from '@material-ui/icons/GetAppRounded';
 
 const Preview = React.memo(({
     media, totalCount, page, handleChange
@@ -16,7 +18,16 @@ const Preview = React.memo(({
             case 'jpg':
             case 'png':
             case 'jpeg':
-                return <img  className="gallery-media" src={fileUrl} />
+                return (
+                    <div className="gallery-media-container">
+                        <img className="gallery-media" src={fileUrl} />
+                        <Tooltip title="Download">
+                            <a href={fileUrl} download>
+                                <DownloadIcon className="download-image-file-icon" />
+                            </a>
+                        </Tooltip>
+                    </div>
+                )
                 break;
             case 'mp4':
                 return (
@@ -38,6 +49,17 @@ const Preview = React.memo(({
                 )
                 break;
             default:
+                return (
+                    <div className="grid-download-icon-label">
+                        <div class="download-container">
+                            <a href={fileUrl} download>
+                                <GetAppRoundedIcon className="download-icon"/>
+                                <Typography>Download File</Typography>
+                            </a>
+                        </div>
+                    </div>
+                )
+                break;
               // code block
         }
     }
