@@ -12,7 +12,7 @@ function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-function Main(props) {
+const Main = React.memo((props) => {
 
   const [mediaList, setMediaList] = useState(props.files?props.files:[]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -131,6 +131,6 @@ function Main(props) {
 
     </Container>
   );
-}
+})
 
 export default Main;
