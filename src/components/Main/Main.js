@@ -14,7 +14,7 @@ function Alert(props) {
 
 function Main(props) {
 
-  const [mediaList, setMediaList] = useState([]);
+  const [mediaList, setMediaList] = useState(props.files?props.files:[]);
   const [uploadedFiles, setUploadedFiles] = useState([]);
   const [page, setPage] = useState(1);
   const [snackbar, setSnackbar] = useState({
@@ -23,10 +23,6 @@ function Main(props) {
     message: ''  
   });
   
-  useEffect(() => {
-    setMediaList(props.files?props.files:[]);
-  }, [props]);
-
   useEffect(() => {
     if(uploadedFiles && uploadedFiles.length>0){
       let previewMedia = mediaList.filter((media) => !media.status && media.status !== 'uploaded');
