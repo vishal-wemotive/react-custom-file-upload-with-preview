@@ -27,8 +27,16 @@ const styles = theme => ({
 });
 
 const FileUpload = React.memo(({
-    classes, onUploadFileList, filesLimit, uploadText
+    classes, onUploadFileList, filesLimit, uploadText, uploadedFiles
 }) => {
+
+  const [files, setFiles] = useState([]);
+  
+  useEffect(() => {
+    if(uploadedFiles){
+      setFiles(uploadedFiles);
+    }
+  }, [uploadedFiles]);
 
   const uploadLabelRender = () => {
     return (
@@ -37,7 +45,7 @@ const FileUpload = React.memo(({
           {
             uploadText
             ?uploadText
-            :<><AttachFile /> <br /> Add File</>
+            :<><AttachFile /> <br /> Upload</>
           }
         </div>
       </div>
@@ -55,7 +63,7 @@ const FileUpload = React.memo(({
         showAlerts={['error']}
       //   maxFileSize={ALLOWED_ATTACHMENT_SIZE_IN_MB}
         filesLimit={filesLimit?filesLimit:3}
-      //   initialFiles={files}
+        initialFiles={files}
         onChange={selectedFiles => onUploadFileList(selectedFiles)}
         onDelete={() => onUploadFileList([])}
         classes={{

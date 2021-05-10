@@ -45,17 +45,16 @@ function App(props) {
       let fileList = [];
       var bar = new Promise((resolve, reject) => {
         files.forEach((file, index) => {
-          let obj = {};
-          const fileName = file.name;
+          let obj = Object.assign({}, file);
+          let fileName = file.name;
           obj={
-            id: index,
+            id: "rcfup-"+index,
             fileName: fileName,
             type: fileName.split('.').pop(),
             thumbnail: '',
             status: 'uploaded'
           }
           let reader = new FileReader();
-          let tempUrl = "";
           reader.onload = function(e) {
             obj.url =  e.target.result;
             fileList.push(obj);
@@ -67,7 +66,7 @@ function App(props) {
       });
       bar.then(() => {
         setUploadedFiles(fileList);
-        props.onUploadFile(files);
+        props.onUploadFile(fileList);
       });
       
     }else{
@@ -77,10 +76,20 @@ function App(props) {
 
   const onDeleteFile = (event, file) => {
     event.stopPropagation();
-    if(props.onDelete){
-      props.onDelete(file);
+    if(file.status){
+      let medias = mediaList.filter((media) => media.id !== file.id);
+      let mediasUploaded = uploadedFiles.filter((media) => media.id !== file.id);
+      setMediaList(medias);
+      setUploadedFiles(mediasUploaded);
+      if(page>1){
+        setPage(page-1);
+      }
     }else{
-      showSnackbar('error', 'onDelete function required for delete file.');
+      if(props.onDelete){
+        props.onDelete(file);
+      }else{
+        showSnackbar('error', 'onDelete function required for delete file.');
+      }
     }
   }
 
@@ -113,6 +122,7 @@ function App(props) {
             onUploadFileList={onUploadFileList}
             filesLimit={props.filesLimit}
             uploadText={props.uploadText}
+            uploadedFiles={uploadedFiles}
           />}
         </Grid>
         <Grid item xs={9} sm={9} md={9} lg={9} xl={9} className="thumbnails-container">
